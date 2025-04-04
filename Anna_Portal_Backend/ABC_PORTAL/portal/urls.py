@@ -33,5 +33,6 @@ urlpatterns = [
     path('search_eligibility',views.serach_for_eligibility),
     path('get_eob',views.generate_pdf),
     path('get_termed_data',views.TermedMembersView.as_view()),
-    path('term_by_date',views.GetDataByTermDate.as_view())
+    path('term_by_date',views.GetDataByTermDate.as_view()),
+    path('date_recent',views.GetDateRecentDataView.as_view()),
 ]

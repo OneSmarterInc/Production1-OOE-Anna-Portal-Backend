@@ -1079,6 +1079,16 @@ class MostRecentDataView(APIView):
             return Response(serializer.data)
         return Response({"message": "No data found"}, status=404)
     
+class GetDateRecentDataView(APIView):
+    def get(self,request):
+        filedate = request.GET.get('recent_date')
+        date_entries  = MyappRecentData.objects.filter(file_date = filedate)
+        if date_entries:
+            serializer = MyappRecentDataSerializer(date_entries,many=True)
+            return Response(serializer.data)
+        else:
+            return Response("No data found for specified date")
+    
 class TermedMembersView(APIView):
     def get(self, request):
         latest_entry = MyappTermedMembers.objects.order_by('-file_date').first()
@@ -1340,7 +1350,7 @@ class GetEligibilityDataDB2(APIView):
                         FROM {schema_name}.elghp 
                         WHERE ELSSN = ? AND ELDSEQ = ?"""
                 cursor.execute(query, (ssn, 0.0))
-                rows = cursor.fetchall()  # Fetch all matching records
+                rows = cursor.fetchall() 
                 print("lenght",len(rows))
                 if not rows:
                     return Response({"message": "No record found for the given SSN"}, status=status.HTTP_404_NOT_FOUND)
@@ -1522,15 +1532,14 @@ class UpdateEligibilityDataDB2(APIView):
 
 
 
-
 import pyodbc
 import os
 
 port = '23'
 host = '104.153.122.227'
 database = 'S78F13CW'
-user = 'ONENAGRJ'
-password = 'Nagaraj8@'
+user = 'onetgart'
+password = 'abcpass21'
 
 
 def map_network_drive(drive_letter, network_path, username, password):

@@ -4,8 +4,8 @@ import os
 port = '23'
 host = '104.153.122.227'
 database = 'S78F13CW'
-user = 'ONENAGRJ'
-password = 'Nagaraj8@'
+user = 'onetgart'
+password = 'abcpass21'
 
 
 def map_network_drive(drive_letter, network_path, username, password):
@@ -60,5 +60,4 @@ def call_stored_procedure_pdf(ssn, ssn_path, ssn_file):
         if 'conn' in locals():
             cursor.close()
             conn.close()
-
-# print(call_stored_procedure_pdf('000007664', '/HOME/DURGA', '000007664.pdf'))
+print(call_stored_procedure_pdf('000007664', '/HOME/DURGA', '000007664.pdf'))
