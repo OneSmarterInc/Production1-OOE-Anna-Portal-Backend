@@ -1322,22 +1322,6 @@ class GetEligibilityDataDB2(APIView):
         if not ssn and not dep_ssn:
             return Response({"error": "SSN or Dependent SSN is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Database connection details
-        host = '10.68.4.201'
-        port = '23'
-        database = 'S06e6f1r'
-        user = 'ONEADMIN'
-        password = 'ONEADMIN'
-
-        connection_string = (
-            f"DRIVER={{iSeries Access ODBC Driver}};"
-            f"SYSTEM={host};"
-            f"PORT={port};"
-            f"DATABASE={database};"
-            f"UID={user};"
-            f"PWD={password};"
-            f"PROTOCOL=TCPIP;"
-        )
 
         try:
             connection = pyodbc.connect(connection_string)
